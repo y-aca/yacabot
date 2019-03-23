@@ -40,14 +40,20 @@ class MyBot {
     }
 
     async sandwich(step) {
-        return step.context.sendActivity("Pratique le sandwich ! Lequel préfères-tu ?")
+        return step.context.sendActivity({
+            text: "Pratique le sandwich ! Lequel préfères-tu ?",
+            value: {
+                slider: {
+                    min: 0,
+                    max: 10
+                }
+            }
+        })
     }
-
 
     async frequency(step) {
         return step.context.sendActivity("Tous les jours le même ?")
     }
-
 
     async sugar(step) {
         return step.context.sendActivity("Quelques plaisirs sucrés ?")
@@ -69,10 +75,28 @@ class MyBot {
             if (!turnContext.responded) {
                 await dialogContext.beginDialog(PEDRO_DIALOG);
             }
-            await this.userState.saveChanges(turnContext)
-            await this.conversationState.saveChanges(turnContext);
-        } else {
-            await turnContext.sendActivity(`[${ turnContext.activity.type } event detected]`)
+        } else if (turnContext.activity.type === ActivityTypes.ConversationUpdate) {
+            // Send greeting when users are added to the conversation.
+            const dialogContext = await this.dialogs.createContext(turnContext);
+            await this.sendWelcomeMessage(turnContext, dialogContext);
+        }
+        await this.userState.saveChanges(turnContext);
+        await this.conversationState.saveChanges(turnContext);
+    }
+
+    async sendWelcomeMessage(turnContext, dialogContext) {
+        // Do we have any new members added to the conversation?
+        if (turnContext.activity.membersAdded.length !== 0) {
+            // Iterate over all new members added to the conversation
+            for (let idx in turnContext.activity.membersAdded) {
+                // Greet anyone that was not the target (recipient) of this message.
+                // Since the bot is the recipient for events from the channel,
+                // context.activity.membersAdded === context.activity.recipient.Id indicates the
+                // bot was added to the conversation, and the opposite indicates this is a user.
+                if (turnContext.activity.membersAdded[idx].id !== turnContext.activity.recipient.id) {
+                    await dialogContext.beginDialog(PEDRO_DIALOG);
+                }
+            }
         }
     }
 }
