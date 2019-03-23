@@ -1,15 +1,54 @@
 {
     "name": "yacabot",
+    "description": "",
     "services": [
         {
+            "type": "abs",
+            "tenantId": "49a350e5-a267-4753-a82c-7254f21aa5b8",
+            "subscriptionId": "f77d9f5a-40ad-42e6-9a1e-36e9e8fe309b",
+            "resourceGroup": "yaca",
+            "serviceName": "yacabot",
+            "name": "yacabot",
+            "id": "1",
+            "appId": "cd971bbb-90bc-42f9-a868-88c36bf0aed1"
+        },
+        {
+            "type": "blob",
+            "connectionString": "7i27g1EXKeg8T+12q5P/2A==!nDpZy4m7BWJxAUc6qr4BA7FmbIhkrlpmsq4yMfJeRso0MY/2Hh0XXX2him5zWiXnqNTGirn7Lic2G3tyU67qeRuQf9dC8/XNVVhc42d95o9C54sjMC0GFTUq6mX3zNKwDywKUsM5ht2KzGAsfgjR8pGFzsJT2x94ExrRGxt9iNJCj5eCDR1c+Jy6pGOkDqjkL1EEHolw4m3gaKMzR1Y+6g==",
+            "tenantId": "49a350e5-a267-4753-a82c-7254f21aa5b8",
+            "subscriptionId": "f77d9f5a-40ad-42e6-9a1e-36e9e8fe309b",
+            "resourceGroup": "yaca",
+            "serviceName": "yacabot8d70",
+            "id": "2"
+        },
+        {
             "type": "endpoint",
-            "name": "development",
-            "endpoint": "http://localhost:3978/api/messages",
             "appId": "",
             "appPassword": "",
-            "id": "1"
+            "endpoint": "http://localhost:3978/api/messages",
+            "name": "development",
+            "id": "3"
+        },
+        {
+            "type": "endpoint",
+            "appId": "cd971bbb-90bc-42f9-a868-88c36bf0aed1",
+            "appPassword": "p72O8SEC+YaRtUUgxzm2eQ==!RLZtpLWQDgy1Z+iqPlvsoj5h0176hC0arlvpJrj8HLFrG68qLS3NBRipDCPqAcn4",
+            "endpoint": "https://yacabot.azurewebsites.net/api/messages",
+            "name": "production",
+            "id": "4"
+        },
+        {
+            "type": "appInsights",
+            "instrumentationKey": "iV8vWtyc5+rEv3aRwY45Ng==!PH5YXtfYxTMrkiWohXPkbjf6yKdh75U2XCaZ+FZR8sxMpLGMD3YuX5JWkr+5Y7ol",
+            "applicationId": "0954f742-abfd-4e5a-99fc-bae299022361",
+            "apiKeys": {},
+            "tenantId": "49a350e5-a267-4753-a82c-7254f21aa5b8",
+            "subscriptionId": "f77d9f5a-40ad-42e6-9a1e-36e9e8fe309b",
+            "resourceGroup": "yaca",
+            "serviceName": "yacabotorsqgd",
+            "id": "5"
         }
     ],
-    "padlock": "",
+    "padlock": "tNMWzw2ICipQD+41zV8ETQ==!qBj7WiXVXkVK85ThoRpdGGIRbW/EHTuHJBBJmRgc3f0rOAXmv1z28AlmTE0XdFws",
     "version": "2.0"
 }
