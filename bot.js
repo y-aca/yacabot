@@ -1,22 +1,22 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-const { ActivityTypes } = require('botbuilder')
-const { ChoicePrompt, DialogSet, NumberPrompt, TextPrompt, WaterfallDialog } = require('botbuilder-dialogs')
+const { ActivityTypes } = require('botbuilder');
+const { ChoicePrompt, DialogSet, NumberPrompt, TextPrompt, WaterfallDialog } = require('botbuilder-dialogs');
 
-const DIALOG_STATE_PROPERTY = 'dialogState'
+const DIALOG_STATE_PROPERTY = 'dialogState';
 
-const WELCOMED_USER = 'welcomedUserProperty'
-const PEDRO_DIALOG = 'pedroDialog'
+const WELCOMED_USER = 'welcomedUserProperty';
+const PEDRO_DIALOG = 'pedroDialog';
 
 class MyBot {
     constructor(userState, conversationState) {
         // Creates a new user property accessor.
         // See https://aka.ms/about-bot-state-accessors to learn more about the bot state and state accessors.
-        this.welcomedUserProperty = userState.createProperty(WELCOMED_USER)
+        this.welcomedUserProperty = userState.createProperty(WELCOMED_USER);
 
-        this.userState = userState
-        this.conversationState = conversationState
+        this.userState = userState;
+        this.conversationState = conversationState;
 
         this.dialogState = this.conversationState.createProperty(DIALOG_STATE_PROPERTY);
 
@@ -28,7 +28,7 @@ class MyBot {
 
             this.sugar.bind(this),
 
-            this.result.bind(this),
+            this.result.bind(this)
 
         ]));
     }
