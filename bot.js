@@ -7,7 +7,7 @@ const { ChoicePrompt, DialogSet, NumberPrompt, TextPrompt, WaterfallDialog } = r
 const DIALOG_STATE_PROPERTY = 'dialogState'
 
 const WELCOMED_USER = 'welcomedUserProperty'
-const PAUL_DIALOG = 'paulDialog'
+const PEDRO_DIALOG = 'pedroDialog'
 
 class MyBot {
     constructor(userState, conversationState) {
@@ -21,69 +21,42 @@ class MyBot {
         this.dialogState = this.conversationState.createProperty(DIALOG_STATE_PROPERTY);
 
         this.dialogs = new DialogSet(this.dialogState);
-        this.dialogs.add(new WaterfallDialog(PAUL_DIALOG, [
-            this.howAreYou.bind(this),
-            this.tired.bind(this),
-            this.overhelmed.bind(this),
-            this.hobbies_time.bind(this),
-            this.liked_activity.bind(this),
-            this.liked_activity_frequency.bind(this),
-            this.liked_activity_eating.bind(this),
-            this.eating_habits_balanced.bind(this),
-            this.eating_habits_sugar.bind(this),
-            this.eating_habits_fat.bind(this),
-            this.results.bind(this),
+        this.dialogs.add(new WaterfallDialog(PEDRO_DIALOG, [
+            this.pedroPresentation.bind(this),
+            this.sandwich.bind(this),
+            this.frequency.bind(this),
+
+            this.sugar.bind(this),
+
+            this.result.bind(this),
+
         ]));
     }
 
-    async howAreYou(step) {
-        return step.context.sendActivity("Et toi, comment ça va ?")
+    async pedroPresentation(step) {
+        await step.context.sendActivity("Je suis Pedro, j'ai 101 an. J\'habite à Lentas, un petit village de pêcheur.")
+        await step.context.sendActivity("Je mange du poisson tous les jours avec des légumes et de l'ail arrosé d'huile d'olive, un vrai régal crétois !")
+        return step.context.sendActivity("Et pour toi, c'est quoi un repas type ?")
     }
 
-    async tired(step) {
-        return step.context.sendActivity("Ah bon, fatigué le matin ?")
+    async sandwich(step) {
+        return step.context.sendActivity("Pratique le sandwich ! Lequel préfères-tu ?")
     }
 
-    async overhelmed(step) {
-        return step.context.sendActivity("Te sens-tu débordé ?")
+
+    async frequency(step) {
+        return step.context.sendActivity("Tous les jours le même ?")
     }
 
-    async hobbies_time(step) {
-        return step.context.sendActivity("As-tu du temps pour tes loisirs ?")
+
+    async sugar(step) {
+        return step.context.sendActivity("Quelques plaisirs sucrés ?")
     }
 
-    async liked_activity(step) {
-        return step.context.sendActivity("Qu'est ce qui te fait du bien ?")
+    async result(step) {
+        return step.context.sendActivity("Regarde ce que j'ai fait de notre échange !")
     }
 
-    async liked_activity_frequency(step) {
-        return step.context.sendActivity("Combien de fois par semaine ?")
-    }
-
-    async liked_activity_eating(step) {
-        return step.context.sendActivity("Tu manges avant ?")
-    }
-
-    async eating_habits_balanced(step) {
-        await step.context.sendActivity("Quelles sont tes habitudes de repas dans la semaine ?")
-        return step.context.sendActivity("Équilibré ?")
-    }
-
-    async eating_habits_sugar(step) {
-        return step.context.sendActivity("Sucré ?")
-    }
-
-    async eating_habits_fat(step) {
-        return step.context.sendActivity("Gras ?")
-    }
-
-    async results(step) {
-        await step.context.sendActivity("Merci de ta dispo !")
-        await step.context.sendActivity("Voilà ton profil santé aujourd'hui : XXX")
-        await step.context.sendActivity("Bravo, ton profil activité physique est top !")
-        await step.context.sendActivity("Toutes ces habitudes de vie sont nécessaires pour ta santé d'aujourd'hui et de demain")
-        return step.context.sendActivity("Je te propose de relever un challenge / défi en cliquant sur une habitude de vie à améliorer !")
-    }
     /**
      *
      * @param {TurnContext} on turn context object.
@@ -94,7 +67,7 @@ class MyBot {
             const dialogContext = await this.dialogs.createContext(turnContext);
             await dialogContext.continueDialog();
             if (!turnContext.responded) {
-                await dialogContext.beginDialog(PAUL_DIALOG);
+                await dialogContext.beginDialog(PEDRO_DIALOG);
             }
             await this.userState.saveChanges(turnContext)
             await this.conversationState.saveChanges(turnContext);
