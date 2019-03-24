@@ -27,14 +27,12 @@ class MyBot {
             this.frequency.bind(this),
 
             this.sugar.bind(this),
-
             this.result.bind(this)
-
         ]));
     }
 
     async pedroPresentation(step) {
-        await step.context.sendActivity("Je suis Pedro, j'ai 101 an. J\'habite à Lentas, un petit village de pêcheur.")
+        await step.context.sendActivity("Salut ! je suis Pedro, j'ai 101 ans. J\'habite à Lentas, un petit village de pêcheur.")
         await step.context.sendActivity("Je mange du poisson tous les jours avec des légumes et de l'ail arrosé d'huile d'olive, un vrai régal crétois !")
         return step.context.sendActivity("Et pour toi, c'est quoi un repas type ?")
     }
@@ -43,11 +41,9 @@ class MyBot {
         return step.context.sendActivity("Pratique le sandwich ! Lequel préfères-tu ?")
     }
 
-
     async frequency(step) {
         return step.context.sendActivity("Tous les jours le même ?")
     }
-
 
     async sugar(step) {
         return step.context.sendActivity("Quelques plaisirs sucrés ?")
