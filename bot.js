@@ -31,10 +31,10 @@ class MyBot {
             this.sugar.bind(this),
             this.result.bind(this),
 
-            // this.balanced.bind(this),
-            // this.capability.bind(this),
+            this.balanced.bind(this),
+            this.capability.bind(this),
 
-            // this.email.bind(this),
+            this.email.bind(this),
         ]));
     }
 
@@ -96,22 +96,6 @@ class MyBot {
         // })
         await setTimeout(() => null, 1000)
         await step.context.sendActivity("Bravo, tu ne manges pas trop de gras, trop sucré, continue !")
-        await setTimeout(() => null, 2000)
-        await step.context.sendActivity({
-            text: "À quel point est-il important pour toi de manger équilibré ?",
-            value: {
-                type: "rating",
-            }
-        })
-        await setTimeout(() => null, 5000)
-        await step.context.sendActivity({
-            text: "À quel point te-sens-tu capable de t'améliorer ?",
-            value: {
-                type: "slider",
-            }
-        })
-        await setTimeout(() => null, 5000)
-        return step.context.sendActivity("Super ! C'est parti, on peut avancer ensemble si tu le souhaites. Quel est ton e-mail ?")
     }
 
     // Submit
@@ -131,12 +115,9 @@ class MyBot {
     async capability(step) {
         await setTimeout(() => null, 1000)
         return step.context.sendActivity({
-            text: "À quel point te-sens-tu capable de le faire ?",
+            text: "À quel point te-sens-tu capable de t'améliorer ?",
             value: {
-                slider: {
-                    min: 1,
-                    max: 10
-                }
+                type: "slider",
             }
         })
     }
