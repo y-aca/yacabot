@@ -38,39 +38,48 @@ class MyBot {
     }
 
     async pedroPresentation(step) {
+        await setTimeout(() => null, 1000)
         await step.context.sendActivity("Salut ! Je suis Pedro, j'ai 101 ans.")
+        await setTimeout(() => null, 1000)
         await step.context.sendActivity("J\'habite à Lentas, un petit village de pêcheurs.")
+        await setTimeout(() => null, 1000)
         await step.context.sendActivity("Je mange du poisson tous les jours avec des légumes et de l'ail, arrosé d'huile d'olive, un vrai régal crétois !")
+        await setTimeout(() => null, 1000)
         return step.context.sendActivity("Et pour toi, c'est quoi un repas type ?")
     }
 
     // Sandwich la semaine et repas entre amis le week-end
 
     async sandwich(step) {
+        await setTimeout(() => null, 1000)
         return step.context.sendActivity("Pratique le sandwich ! Lequel préfères-tu ?")
     }
 
     // Le classique jambon-beurre
 
     async ingredients(step) {
+        await setTimeout(() => null, 1000)
         return step.context.sendActivity("Je ne suis pas sûr des ingrédients qu'il contient. Peux-tu me les lister ?")
     }
 
     // Pain, jambon, beurre
 
     async frequency(step) {
+        await setTimeout(() => null, 1000)
         return step.context.sendActivity("Tous les jours le même ?")
     }
 
     // Oui
 
     async sugar(step) {
+        await setTimeout(() => null, 1000)
         return step.context.sendActivity("Quelques plaisirs sucrés ?")
     }
 
     // Je suis plutôt fruits
 
     async result(step) {
+        await setTimeout(() => null, 1000)
         await step.context.sendActivity({
             text: "Regarde ce que j'ai fait de notre échange !",
             value: {
@@ -80,7 +89,9 @@ class MyBot {
                 fat: 8,
             }
         })
+        await setTimeout(() => null, 1000)
         await step.context.sendActivity("Bravo, tu ne manges pas trop de gras, trop sucré, continue !")
+        await setTimeout(() => null, 1000)
         return step.context.sendActivity({
             text: "Aurais-tu envie de t'améliorer ?",
             value: {
@@ -92,6 +103,7 @@ class MyBot {
     // Submit
 
     async balanced(step) {
+        await setTimeout(() => null, 1000)
         return step.context.sendActivity({
             text: "À quel point est-il important pour toi de manger équilibré ?",
             value: {
@@ -106,6 +118,7 @@ class MyBot {
     // Submit
 
     async capability(step) {
+        await setTimeout(() => null, 1000)
         return step.context.sendActivity({
             text: "À quel point te-sens-tu capable de le faire ?",
             value: {
@@ -120,6 +133,7 @@ class MyBot {
     // Submit
 
     async email(step) {
+        await setTimeout(() => null, 1000)
         return step.context.sendActivity("C'est parti, on peut avancer ensemble si tu le souhaites. Quel est ton e-mail ?")
     }
 
