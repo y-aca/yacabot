@@ -30,10 +30,10 @@ class MyBot {
             this.sugar.bind(this),
             this.result.bind(this),
 
-            this.balanced.bind(this),
-            this.capability.bind(this),
+            // this.balanced.bind(this),
+            // this.capability.bind(this),
 
-            this.email.bind(this),
+            // this.email.bind(this),
         ]));
     }
 
@@ -44,8 +44,8 @@ class MyBot {
         await step.context.sendActivity("J\'habite à Lentas, un petit village de pêcheurs.")
         await setTimeout(() => null, 1000)
         await step.context.sendActivity("Je mange du poisson tous les jours avec des légumes et de l'ail, arrosé d'huile d'olive, un vrai régal crétois !")
-        await setTimeout(() => null, 1000)
-        return step.context.sendActivity("Et pour toi, c'est quoi un repas type ?")
+        await setTimeout(() => null, 2000)
+        return step.context.sendActivity("Et pour toi, c'est quoi ta semaine type ?")
     }
 
     // Sandwich la semaine et repas entre amis le week-end
@@ -55,7 +55,7 @@ class MyBot {
         return step.context.sendActivity("Pratique le sandwich ! Lequel préfères-tu ?")
     }
 
-    // Le classique jambon-beurre
+    // Le parisien
 
     async ingredients(step) {
         await setTimeout(() => null, 1000)
@@ -79,25 +79,34 @@ class MyBot {
     // Je suis plutôt fruits
 
     async result(step) {
-        await setTimeout(() => null, 1000)
-        await step.context.sendActivity({
-            text: "Regarde ce que j'ai fait de notre échange !",
-            value: {
-                balance: 3,
-                various: 3,
-                sugar: 8,
-                fat: 8,
-            }
-        })
+        // await setTimeout(() => null, 1000)
+        // await step.context.sendActivity({
+        //     text: "Regarde ce que j'ai fait de notre échange !",
+        //     value: {
+        //         balance: 3,
+        //         various: 3,
+        //         sugar: 8,
+        //         fat: 8,
+        //     }
+        // })
         await setTimeout(() => null, 1000)
         await step.context.sendActivity("Bravo, tu ne manges pas trop de gras, trop sucré, continue !")
-        await setTimeout(() => null, 1000)
-        return step.context.sendActivity({
-            text: "Aurais-tu envie de t'améliorer ?",
+        await setTimeout(() => null, 2000)
+        await step.context.sendActivity({
+            text: "À quel point est-il important pour toi de manger équilibré ?",
             value: {
-                form: "balanced_various",
+                type: "rating",
             }
         })
+        await setTimeout(() => null, 5000)
+        await step.context.sendActivity({
+            text: "À quel point te-sens-tu capable de t'améliorer ?",
+            value: {
+                type: "slider",
+            }
+        })
+        await setTimeout(() => null, 5000)
+        return step.context.sendActivity("Super ! C'est parti, on peut avancer ensemble si tu le souhaites. Quel est ton e-mail ?")
     }
 
     // Submit
@@ -107,10 +116,7 @@ class MyBot {
         return step.context.sendActivity({
             text: "À quel point est-il important pour toi de manger équilibré ?",
             value: {
-                slider: {
-                    min: 1,
-                    max: 10
-                }
+                type: "rating",
             }
         })
     }
