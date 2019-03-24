@@ -32,7 +32,7 @@ class MyBot {
     }
 
     async pedroPresentation(step) {
-        await step.context.sendActivity("Salut ! je suis Pedro, j'ai 101 ans. J\'habite à Lentas, un petit village de pêcheur.")
+        await step.context.sendActivity("Salut ! Je suis Pedro, j'ai 101 ans. J\'habite à Lentas, un petit village de pêcheur.")
         await step.context.sendActivity("Je mange du poisson tous les jours avec des légumes et de l'ail arrosé d'huile d'olive, un vrai régal crétois !")
         return step.context.sendActivity("Et pour toi, c'est quoi un repas type ?")
     }
