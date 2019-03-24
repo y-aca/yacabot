@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 const { ActivityTypes } = require('botbuilder');
-const { ChoicePrompt, DialogSet, NumberPrompt, TextPrompt, WaterfallDialog } = require('botbuilder-dialogs');
+const { DialogSet, WaterfallDialog } = require('botbuilder-dialogs');
 
 const DIALOG_STATE_PROPERTY = 'dialogState';
 
@@ -24,41 +24,103 @@ class MyBot {
         this.dialogs.add(new WaterfallDialog(PEDRO_DIALOG, [
             this.pedroPresentation.bind(this),
             this.sandwich.bind(this),
+            this.ingredients.bind(this),
             this.frequency.bind(this),
 
             this.sugar.bind(this),
-            this.result.bind(this)
+            this.result.bind(this),
+
+            this.balanced.bind(this),
+            this.capability.bind(this),
+
+            this.email.bind(this),
         ]));
     }
 
     async pedroPresentation(step) {
-        await step.context.sendActivity("Salut ! Je suis Pedro, j'ai 101 ans. J\'habite à Lentas, un petit village de pêcheur.")
-        await step.context.sendActivity("Je mange du poisson tous les jours avec des légumes et de l'ail arrosé d'huile d'olive, un vrai régal crétois !")
+        await step.context.sendActivity("Salut ! Je suis Pedro, j'ai 101 ans.")
+        await step.context.sendActivity("J\'habite à Lentas, un petit village de pêcheurs.")
+        await step.context.sendActivity("Je mange du poisson tous les jours avec des légumes et de l'ail, arrosé d'huile d'olive, un vrai régal crétois !")
         return step.context.sendActivity("Et pour toi, c'est quoi un repas type ?")
     }
 
+    // Sandwich la semaine et repas entre amis le week-end
+
     async sandwich(step) {
+        return step.context.sendActivity("Pratique le sandwich ! Lequel préfères-tu ?")
+    }
+
+    // Le classique jambon-beurre
+
+    async ingredients(step) {
+        return step.context.sendActivity("Je ne suis pas sûr des ingrédients qu'il contient. Peux-tu me les lister ?")
+    }
+
+    // Pain, jambon, beurre
+
+    async frequency(step) {
+        return step.context.sendActivity("Tous les jours le même ?")
+    }
+
+    // Oui
+
+    async sugar(step) {
+        return step.context.sendActivity("Quelques plaisirs sucrés ?")
+    }
+
+    // Je suis plutôt fruits
+
+    async result(step) {
+        await step.context.sendActivity({
+            text: "Regarde ce que j'ai fait de notre échange !",
+            value: {
+                balance: 3,
+                various: 3,
+                sugar: 8,
+                fat: 8,
+            }
+        })
+        await step.context.sendActivity("Bravo, tu ne manges pas trop de gras, trop sucré, continue !")
         return step.context.sendActivity({
-            text: "Pratique le sandwich ! Lequel préfères-tu ?",
+            text: "Aurais-tu envie de t'améliorer ?",
+            value: {
+                form: "balanced_various",
+            }
+        })
+    }
+
+    // Submit
+
+    async balanced(step) {
+        return step.context.sendActivity({
+            text: "À quel point est-il important pour toi de manger équilibré ?",
             value: {
                 slider: {
-                    min: 0,
+                    min: 1,
                     max: 10
                 }
             }
         })
     }
 
-    async frequency(step) {
-        return step.context.sendActivity("Tous les jours le même ?")
+    // Submit
+
+    async capability(step) {
+        return step.context.sendActivity({
+            text: "À quel point te-sens-tu capable de le faire ?",
+            value: {
+                slider: {
+                    min: 1,
+                    max: 10
+                }
+            }
+        })
     }
 
-    async sugar(step) {
-        return step.context.sendActivity("Quelques plaisirs sucrés ?")
-    }
+    // Submit
 
-    async result(step) {
-        return step.context.sendActivity("Regarde ce que j'ai fait de notre échange !")
+    async email(step) {
+        return step.context.sendActivity("C'est parti, on peut avancer ensemble si tu le souhaites. Quel est ton e-mail ?")
     }
 
     /**
