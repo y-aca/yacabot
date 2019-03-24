@@ -23,6 +23,7 @@ class MyBot {
         this.dialogs = new DialogSet(this.dialogState);
         this.dialogs.add(new WaterfallDialog(PEDRO_DIALOG, [
             this.pedroPresentation.bind(this),
+            this.empty.bind(this),
             this.sandwich.bind(this),
             this.ingredients.bind(this),
             this.frequency.bind(this),
@@ -46,6 +47,10 @@ class MyBot {
         await step.context.sendActivity("Je mange du poisson tous les jours avec des légumes et de l'ail, arrosé d'huile d'olive, un vrai régal crétois !")
         await setTimeout(() => null, 2000)
         return step.context.sendActivity("Et pour toi, c'est quoi ta semaine type ?")
+    }
+
+    async empty(step) {
+        return step.context.sendActivity(".")
     }
 
     // Sandwich la semaine et repas entre amis le week-end
